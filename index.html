@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowchart & Pseudo Code Adventure</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-mode">
+
+    <!-- HEADER BAR -->
+    <header class="game-header">
+        <div class="logo-area">
+            <i class="fa-solid fa-gamepad game-logo-icon"></i>
+            <span class="game-title">Flowchart & Pseudo Code Adventure</span>
+        </div>
+        <div class="stats-bar" id="game-stats-header" style="display: none;">
+            <div class="stat-item"><i class="fa-solid fa-star text-warning"></i> คะแนนรวม: <span id="header-total-score">0</span></div>
+            <div class="stat-item"><i class="fa-solid fa-circle-question text-info"></i> ข้อที่: <span id="header-q-progress">1/10</span></div>
+        </div>
+        <div class="header-actions">
+            <div class="theme-toggle" id="theme-btn" title="เปลี่ยนโหมดสี">
+                <i class="fa-solid fa-moon"></i>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+
+        <!-- PAGE 1: WELCOME & AVATAR SELECTION -->
+        <section id="page-1" class="page-view active-page animate__animated animate__fadeIn">
+            <div class="welcome-container text-center">
+                <h1 class="welcome-title animate__animated animate__pulse animate__infinite">Flowchart & Pseudo Code Adventure</h1>
+                <p class="welcome-subtitle">ยินดีต้อนรับสู่การผจญภัยในโลกของผังงานและรหัสเทียม สำหรับนักเรียนชั้นมัธยมศึกษาปีที่ 4</p>
+                
+                <div class="avatar-selection-zone">
+                    <h3>เลือกร่างอวตารผู้กล้าของคุณเพื่อเริ่มต้นเกม</h3>
+                    <div class="avatar-cards-grid">
+                        <div class="avatar-card" id="avatar-boy-select" onclick="chooseAvatar('boy')">
+                            <div class="avatar-svg-wrap">
+                                <svg viewBox="0 0 100 100" width="100" height="100">
+                                    <circle cx="50" cy="50" r="45" fill="#4dabf7"/>
+                                    <circle cx="50" cy="45" r="25" fill="#fff4e6"/>
+                                    <path d="M25 40 Q50 20 75 40" fill="#333"/> <!-- Hair -->
+                                    <circle cx="42" cy="45" r="3" fill="#333"/>
+                                    <circle cx="58" cy="45" r="3" fill="#333"/>
+                                    <path d="M42 58 Q50 66 58 58" stroke="#333" stroke-width="3" fill="none"/>
+                                </svg>
+                            </div>
+                            <p>Blue</p>
+                        </div>
+                        <div class="avatar-card" id="avatar-girl-select" onclick="chooseAvatar('girl')">
+                            <div class="avatar-svg-wrap">
+                                <svg viewBox="0 0 100 100" width="100" height="100">
+                                    <circle cx="50" cy="50" r="45" fill="#ff8787"/>
+                                    <circle cx="50" cy="45" r="25" fill="#fff4e6"/>
+                                    <path d="M20 45 Q50 15 80 45" fill="#ffa94d"/> <!-- Hair -->
+                                    <circle cx="42" cy="45" r="3" fill="#333"/>
+                                    <circle cx="58" cy="45" r="3" fill="#333"/>
+                                    <path d="M42 58 Q50 66 58 58" stroke="#333" stroke-width="3" fill="none"/>
+                                </svg>
+                            </div>
+                            <p>Red</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="start-game-btn" class="btn btn-primary btn-lg start-btn disabled" disabled onclick="navigateTo(2)">
+                    <i class="fa-solid fa-play"></i> เข้าสู่บทเรียน
+                </button>
+            </div>
+        </section>
+
+        <!-- PAGE 2: FLOWCHART BASIC CARDS -->
+        <section id="page-2" class="page-view animate__animated animate__fadeIn">
+            <div class="content-box">
+                <h2 class="section-title"><i class="fa-solid fa-book"></i> ความรู้เบื้องต้นเกี่ยวกับผังงาน</h2>
+                <p class="intro-text"><strong>Flowchart (ผังงาน)</strong> คือ การใช้ภาพสัญลักษณ์เรขาคณิตแทนลำดับขั้นตอนการทำงาน ทบทวนสัญลักษณ์ก่อนเข้าเล่นเกม</p>
+                
+                <div class="cards-grid">
+                    <div class="symbol-card border-terminal">
+                        <div class="symbol-svg-holder"><svg viewBox="0 0 120 50"><rect x="10" y="10" width="100" height="30" rx="15" fill="#4dabf7" stroke="#228be6" stroke-width="2"/></svg></div>
+                        <h3>เริ่มต้น / สิ้นสุด (Terminal)</h3>
+                        <p>ใช้จุดเริ่มต้นหรือจุดสิ้นสุดกระบวนการ</p>
+                    </div>
+                    <div class="symbol-card border-process">
+                        <div class="symbol-svg-holder"><svg viewBox="0 0 120 50"><rect x="10" y="10" width="100" height="30" fill="#ffd43b" stroke="#f59f00" stroke-width="2"/></svg></div>
+                        <h3>การปฏิบัติงาน (Process)</h3>
+                        <p>การประมวลผล คำนวณ หรือกำหนดค่า</p>
+                    </div>
+                    <div class="symbol-card border-input">
+                        <div class="symbol-svg-holder"><svg viewBox="0 0 120 50"><polygon points="25,10 110,10 95,40 10,40" fill="#a9e34b" stroke="#74b816" stroke-width="2"/></svg></div>
+                        <h3>รับ/แสดงข้อมูล (Input/Output)</h3>
+                        <p>นำเข้า/ส่งออกข้อมูลทั่วไปไม่ระบุอุปกรณ์</p>
+                    </div>
+                    <div class="symbol-card border-decision">
+                        <div class="symbol-svg-holder"><svg viewBox="0 0 120 50"><polygon points="60,5 105,25 60,45 15,25" fill="#ff8787" stroke="#f03e3e" stroke-width="2"/></svg></div>
+                        <h3>การตัดสินใจ (Decision)</h3>
+                        <p>ตรวจสอบเงื่อนไขเพื่อแยกทิศทางตามค่า จริง/เท็จ</p>
+                    </div>
+                    <div class="symbol-card border-display">
+                        <div class="symbol-svg-holder"><svg viewBox="0 0 120 50"><path d="M10,10 L85,10 Q110,25 85,40 L10,40 Z" fill="#da77f2" stroke="#ae3ec9" stroke-width="2"/></svg></div>
+                        <h3>แสดงผลจอภาพ (Display)</h3>
+                        <p>แสดงผลลัพธ์ออกทางหน้าจอคอมพิวเตอร์</p>
+                    </div>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" onclick="navigateTo(1)"><i class="fa-solid fa-arrow-left"></i> ก่อนหน้า</button>
+                    <button class="btn btn-primary" onclick="navigateTo(3)">หน้าต่อไป <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 3: SEQUENCE EX -->
+        <section id="page-3" class="page-view animate__animated animate__fadeIn">
+            <div class="content-box">
+                <h2 class="section-title"><i class="fa-solid fa-list-ol"></i> รูปแบบผังงาน: แบบลำดับ (Sequence)</h2>
+                <p class="intro-text">การทำงานเป็นเส้นตรงจากบนลงล่าง ไม่มีเงื่อนไขที่ซับซ้อน ตัวอย่างเช่น <strong>"กระบวนการชงกาแฟ"</strong></p>
+                <div class="flowchart-demo-container">
+                    <div class="flow-demo-vertical">
+                        <div class="flow-node node-terminal">เริ่มต้น (Start)</div>
+                        <div class="flow-arrow-animated"><i class="fa-solid fa-arrow-down"></i></div>
+                        <div class="flow-node node-process">รับน้ำและต้มน้ำให้เดือด</div>
+                        <div class="flow-arrow-animated"><i class="fa-solid fa-arrow-down"></i></div>
+                        <div class="flow-node node-process">ใส่กาแฟและคนให้เข้ากัน</div>
+                        <div class="flow-arrow-animated"><i class="fa-solid fa-arrow-down"></i></div>
+                        <div class="flow-node node-terminal">สิ้นสุด (End)</div>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" onclick="navigateTo(2)"><i class="fa-solid fa-arrow-left"></i> ก่อนหน้า</button>
+                    <button class="btn btn-primary" onclick="navigateTo(4)">หน้าต่อไป <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 4: SELECTION EX -->
+        <section id="page-4" class="page-view animate__animated animate__fadeIn">
+            <div class="content-box">
+                <h2 class="section-title"><i class="fa-solid fa-code-branch"></i> รูปแบบผังงาน: แบบทางเลือก (Selection)</h2>
+                <p class="intro-text">มีการแยกทิศทางการทำงานโดยอาศัยเงื่อนไขการตัดสินใจ ตัวอย่างเช่น <strong>"ตรวจสอบคะแนนสอบ"</strong></p>
+                <div class="flowchart-demo-container">
+                    <div class="flow-demo-vertical">
+                        <div class="flow-node node-terminal">Start</div>
+                        <div class="flow-arrow-animated"><i class="fa-solid fa-arrow-down"></i></div>
+                        <div class="flow-node node-input">รับคะแนนสอบ (Score)</div>
+                        <div class="flow-arrow-animated"><i class="fa-solid fa-arrow-down"></i></div>
+                        <div class="flow-node node-decision">คะแนน >= 50?</div>
+                        <div style="display: flex; justify-content: space-between; margin-top: 10px; width:100%;">
+                            <div><span class="badge bg-success">ใช่</span> → แสดงผล "ผ่าน"</div>
+                            <div><span class="badge bg-danger">ไม่ใช่</span> → แสดงผล "ไม่ผ่าน"</div>
+                        </div>
+                        <div class="flow-arrow-animated"><i class="fa-solid fa-arrow-down"></i></div>
+                        <div class="flow-node node-terminal">End</div>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" onclick="navigateTo(3)"><i class="fa-solid fa-arrow-left"></i> ก่อนหน้า</button>
+                    <button class="btn btn-primary" onclick="navigateTo(5)">หน้าต่อไป <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 5: ITERATION EX -->
+        <section id="page-5" class="page-view animate__animated animate__fadeIn">
+            <div class="content-box">
+                <h2 class="section-title"><i class="fa-solid fa-rotate"></i> รูปแบบผังงาน: แบบทำซ้ำ (Iteration)</h2>
+                <p class="intro-text">วนทำงานในบล็อกเดิมซ้ำจนกว่าเงื่อนไขจะกลายเป็นเท็จ ตัวอย่างเช่น <strong>"การนับเลข 1 ถึง 5"</strong></p>
+                <div class="flowchart-demo-container">
+                    <div class="flow-demo-vertical">
+                        <div class="flow-node node-process">กำหนด i = 1</div>
+                        <div class="flow-arrow-animated"><i class="fa-solid fa-arrow-down"></i></div>
+                        <div class="flow-node node-decision">i <= 5?</div>
+                        <div class="flow-arrow-animated"><i class="fa-solid fa-arrow-down"></i> <span class="badge bg-success">ใช่</span></div>
+                        <div class="flow-node node-display">แสดงค่า i และเพิ่มค่า i++</div>
+                        <div class="text-muted" style="font-size:10pt;">(วนกลับขึ้นไปตรวจสอบเงื่อนไขใหม่)</div>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" onclick="navigateTo(4)"><i class="fa-solid fa-arrow-left"></i> ก่อนหน้า</button>
+                    <button class="btn btn-primary" onclick="navigateTo(6)">หน้าต่อไป <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 6: PSEUDO CODE INTRO -->
+        <section id="page-6" class="page-view animate__animated animate__fadeIn">
+            <div class="content-box">
+                <h2 class="section-title"><i class="fa-solid fa-file-code"></i> การเขียนรหัสเทียม (Pseudo Code)</h2>
+                <p class="intro-text">รหัสเทียมคือการจำลองขั้นตอนเขียนโค้ดคอมพิวเตอร์อย่างง่ายด้วยถ้อยคำภาษาอังกฤษหรือไทยที่เรียงลำดับอย่างเป็นตรรกะ</p>
+                <div class="comparison-container">
+                    <div class="pseudo-example-box">
+                        <h4>แบบลำดับ</h4>
+                        <pre>BEGIN
+  INPUT length
+  area = length * length
+  OUTPUT area
+END</pre>
+                    </div>
+                    <div class="pseudo-example-box">
+                        <h4>แบบทางเลือก</h4>
+                        <pre>BEGIN
+  IF score >= 50 THEN
+    PRINT "Pass"
+  ELSE
+    PRINT "Fail"
+  ENDIF
+END</pre>
+                    </div>
+                </div>
+                <div class="nav-buttons" style="margin-top: 30px;">
+                    <button class="btn btn-secondary" onclick="navigateTo(5)"><i class="fa-solid fa-arrow-left"></i> ก่อนหน้า</button>
+                    <button class="btn btn-accent btn-lg" onclick="startGamifiedTest()"><i class="fa-solid fa-gamepad"></i> เข้าใจแล้ว ไปทำแบบทดสอบแบบเกม!</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 7: GAME PLAYGROUND (QUIZ & MISSION) -->
+        <section id="page-7" class="page-view animate__animated animate__fadeIn">
+            <div class="game-quiz-layout">
+                
+                <!-- LEFT & CENTER ROW: MISSION TASK & FLOWCHART CANVAS -->
+                <div class="game-left-center-column">
+                    <div class="mission-status-panel">
+                        <div class="mission-header-row">
+                            <span class="badge bg-danger animate__animated animate__flash animate__infinite">MISSION CHALLENGE</span>
+                            <span class="mission-type-badge" id="current-mission-type">Sequence</span>
+                        </div>
+                        <h2 id="current-mission-title">โจทย์สถานการณ์ปัญหา: กำลังสุ่ม...</h2>
+                        <p class="instruction-desc">คำชี้แจง: คลิกหรือลากบล็อกสัญลักษณ์สลับตำแหน่งเรียงจากบนลงล่างให้ถูกต้องสมบูรณ์ 100%</p>
+                    </div>
+
+                    <div class="workspace-grid">
+                        <!-- PALETTE COLUMN -->
+                        <div class="palette-container-box">
+                            <h3><i class="fa-solid fa-boxes-stacked"></i> บล็อกตัวเลือก</h3>
+                            <div id="blocks-palette-list" class="palette-blocks-flex">
+                                <!-- Generated Dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- CANVAS FLOWCHART WORKSPACE -->
+                        <div class="canvas-workspace-box">
+                            <h3><i class="fa-solid fa-network-wired"></i> พื้นที่จัดลำดับผังงาน (Flowchart Canvas)</h3>
+                            <div id="flowchart-drop-area" class="flowchart-slots-vertical">
+                                <!-- Slots generated dynamically -->
+                            </div>
+                            <div class="workspace-footer-actions">
+                                <span class="potential-points-text">คะแนนที่เป็นไปได้ในข้อนี้: <strong id="question-potential-score">100</strong> แต้ม</span>
+                                <button class="btn btn-success btn-lg" id="confirm-answer-btn" onclick="submitCurrentAnswer()">
+                                    <i class="fa-solid fa-circle-check"></i> ยืนยันคำตอบ
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN: AVATAR FEEDBACK & REALTIME PSEUDO CODE -->
+                <div class="game-right-feedback-column">
+                    <!-- AVATAR PANEL -->
+                    <div class="avatar-feedback-panel">
+                        <div id="live-avatar-mood-container" class="avatar-svg-container">
+                            <!-- Dynamic interactive avatar state -->
+                        </div>
+                        <div class="avatar-speech-bubble">
+                            <p id="avatar-feedback-msg">จัดลำดับบล็อกสัญลักษณ์และสังเกตรหัสเทียมแบบเรียลไทม์ได้เลยนะผู้กล้า!</p>
+                        </div>
+                    </div>
+
+                    <!-- REALTIME PSEUDO CODE -->
+                    <div class="realtime-pseudo-panel">
+                        <h3><i class="fa-solid fa-terminal"></i> รหัสเทียมเรียลไทม์ (Pseudo Code)</h3>
+                        <div class="pseudo-frame">
+                            <div class="pseudo-keyword">BEGIN</div>
+                            <div id="realtime-pseudo-lines" class="pseudo-lines-container">
+                                <!-- Updated in real-time -->
+                                <span class="pseudo-placeholder">// โปรดเพิ่มบล็อกสัญลักษณ์เพื่อจำลองรหัสเทียม...</span>
+                            </div>
+                            <div class="pseudo-keyword">END</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PAGE 8: RESULT SCREEN & SCORE EVALUATION -->
+        <section id="page-8" class="page-view animate__animated animate__fadeIn">
+            <div class="result-evaluation-container text-center">
+                <h1 class="evaluation-header">ผลการประเมินการเดินทาง</h1>
+                
+                <div class="rank-badge-box animate__animated animate__zoomIn animate__delay-1s">
+                    <div id="evaluation-rank-icon" class="rank-visual-icon">🏆</div>
+                    <h2 id="evaluation-rank-title">You're Glorious Ruler!!</h2>
+                </div>
+
+                <div class="avatar-final-reveal" id="final-avatar-reveal-box">
+                    <!-- Avatar displays here -->
+                </div>
+
+                <div class="score-summary-card">
+                    <p class="score-label">คะแนนสะสมรวมสุทธิที่ทำได้</p>
+                    <div class="score-huge-text"><span id="final-accumulated-score">0</span> / 1,000</div>
+                    <div class="progress-bar-total">
+                        <div id="final-score-progress-fill" style="width: 0%;"></div>
+                    </div>
+                </div>
+
+                <div class="action-footer-buttons">
+                    <button class="btn btn-primary btn-lg" onclick="resetAndRestartGame()">
+                        <i class="fa-solid fa-arrow-rotate-left"></i> เล่นใหม่อีกครั้ง
+                    </button>
+                    <button class="btn btn-accent btn-lg" onclick="triggerCertificateWindow()">
+                        <i class="fa-solid fa-certificate"></i> รับเกียรติบัตรอิเล็กทรอนิกส์
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="game-footer">
+        <p>&copy; 2026 Flowchart & Pseudo Code Adventure Game. พัฒนาขึ้นสำหรับการเรียนรู้วิทยาการคำนวณ ม.4</p>
+    </footer>
+
+    <!-- AUDIO SOUND EFFECTS ELEMENTS -->
+    <audio id="snd-correct" src="https://assets.mixkit.co/active_storage/sfx/2019/2019-84.wav" preload="auto"></audio>
+    <audio id="snd-wrong" src="https://assets.mixkit.co/active_storage/sfx/2018/2018-84.wav" preload="auto"></audio>
+    <audio id="snd-complete" src="https://assets.mixkit.co/active_storage/sfx/2017/2017-84.wav" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
